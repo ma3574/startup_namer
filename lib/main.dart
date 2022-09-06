@@ -36,7 +36,26 @@ class _RandomWordsState extends State<RandomWords> {
   final _biggerFont = const TextStyle(fontSize: 18);
 
   void _pushSaved() {
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
+      final tiles = _saved.map((pair) {
+        return ListTile(
+          title: Text(
+            pair.asPascalCase,
+            style: _biggerFont,
+          ),
+        );
+      });
+      final divided = tiles.isNotEmpty
+          ? ListTile.divideTiles(context: context, tiles: tiles).toList()
+          : <Widget>[];
 
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text("Your Favourites"),
+        ),
+        body: ListView(children: divided),
+      );
+    }));
   }
 
   @override
@@ -63,13 +82,13 @@ class _RandomWordsState extends State<RandomWords> {
               final alreadySaved = _saved.contains(_suggestions[index]);
 
               return ListTile(
-                title: Text(
-                    _suggestions[index].asPascalCase, style: _biggerFont),
+                title:
+                    Text(_suggestions[index].asPascalCase, style: _biggerFont),
                 trailing: Icon(
                   alreadySaved ? Icons.favorite : Icons.favorite_border,
                   color: alreadySaved ? Colors.red : null,
                   semanticLabel:
-                  alreadySaved ? "Remove favourite" : "Add to favourites",
+                      alreadySaved ? "Remove favourite" : "Add to favourites",
                 ),
                 onTap: () {
                   setState(() {
@@ -81,7 +100,6 @@ class _RandomWordsState extends State<RandomWords> {
                   });
                 },
               );
-            })
-    );
+            }));
   }
 }
