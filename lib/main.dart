@@ -11,6 +11,9 @@ void main() {
   runApp(const MyApp());
 }
 
+const foregroundColor = Color(0xffcdb181);
+const backgroundColor = Color(0xff004d40);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -20,8 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Startup Name Generator',
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-              backgroundColor: Color(0xff1c6666),
-              foregroundColor: Color(0xffcdb181)
+              backgroundColor: backgroundColor,
+              foregroundColor: foregroundColor
           ),
       ),
       home: RandomWords(),
@@ -92,7 +95,7 @@ class _RandomWordsState extends State<RandomWords> {
                     Text(_suggestions[index].asPascalCase, style: _biggerFont),
                 trailing: Icon(
                   alreadySaved ? Icons.favorite : Icons.favorite_border,
-                  color: alreadySaved ? const Color(0xff1c6666) : null,
+                  color: alreadySaved ? backgroundColor : null,
                   semanticLabel:
                       alreadySaved ? "Remove favourite" : "Add to favourites",
                 ),
