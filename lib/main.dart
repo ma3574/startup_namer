@@ -16,8 +16,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       title: 'Startup Name Generator',
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Color(0xff1c6666),
+              foregroundColor: Color(0xffcdb181)
+          ),
+      ),
       home: RandomWords(),
     );
   }
@@ -65,7 +71,7 @@ class _RandomWordsState extends State<RandomWords> {
           title: const Text("Startup Name Generator"),
           actions: [
             IconButton(
-                onPressed: _pushSaved, icon: Icon(Icons.favorite_rounded))
+                onPressed: _pushSaved, icon: const Icon(Icons.favorite_rounded))
           ],
         ),
         body: ListView.builder(
@@ -86,7 +92,7 @@ class _RandomWordsState extends State<RandomWords> {
                     Text(_suggestions[index].asPascalCase, style: _biggerFont),
                 trailing: Icon(
                   alreadySaved ? Icons.favorite : Icons.favorite_border,
-                  color: alreadySaved ? Colors.red : null,
+                  color: alreadySaved ? const Color(0xff1c6666) : null,
                   semanticLabel:
                       alreadySaved ? "Remove favourite" : "Add to favourites",
                 ),
